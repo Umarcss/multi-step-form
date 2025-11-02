@@ -1,0 +1,1323 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /** primary */
+    --dark-blue: #032a59;
+    --purple-medium: #473dff;
+    --light-blue: #adbeff;
+    --lighter-blue: #bfe2fd;
+    --bright-red: #ed3548;
+    /** neutrals */
+    --dark-grey: #9699ab;
+    --transparent-purple: #d6d9e6;
+    --transparent-blue: #f0f5ff;
+    --transparent-light-blue: #fafbff;
+    --white: #ffffff;
+    /** hover */
+    --dark-blue-hover: #174A8B;
+    --purple-medium-hover: #938CFE;
+    --bright-red-hover: #ed3548dd; /* #F15A6C */
+    /** others */
+    --summary-bg: #F8F9FE;
+    --spinner-container-color: #00000080;
+    --modal-container-color: #032a5973;
+    --dark-blue-transparent: #032a5933;
+    --dark-blue-transparent-light: #032a5926;
+    --shine: #ffffff48;
+    /** typography */
+    --small-font-size: 14px;
+    --font-size: 16px;
+    --font-weight-thin: 300;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 700;
+}
+
+html, body {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+body {
+    background-color: var(--transparent-blue);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+.container {
+    width: clamp(48rem, 90vw, 75rem);
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--white);
+    border-radius: 0.625rem;
+    padding-block: 1rem;
+    padding-inline: 1rem;
+    margin: 2rem auto;
+    max-width: 75rem;
+    min-height: 45rem;
+    box-shadow: 0 0.75rem 1rem var(--transparent-purple);
+    /** Animation Preference */
+    @media (prefers-reduced-motion: no-preference) {
+        transition: all 0.4s ease-in-out;
+    }
+}
+
+
+/** Progress Section */
+
+.progress-section {
+    background: url('images/bg-sidebar-desktop.svg') no-repeat center center / cover;
+    height: 43rem;
+    width: 30vw;
+    border-radius: 0.625rem;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding-inline-start: 2.25rem;
+}
+
+.progress-circle {
+    display: flex;
+    align-items: center;
+    width: 11.5rem;
+    margin-block-start: 2.5rem;
+}
+
+.step-number {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    border: 1px solid var(--transparent-blue);
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: var(--font-weight-bold);
+    margin-inline-end: 1rem;
+}
+
+.step-number.active {
+    background-color: var(--lighter-blue);
+    color: var(--dark-blue);
+}
+
+.step-number:hover {
+    cursor: pointer;
+}
+
+.user-info-step {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    text-transform: uppercase;
+
+}
+
+.step {
+    color: var(--transparent-purple);
+    font-size: var(--small-font-size);
+    font-weight: var(--font-weight-thin);
+    margin-block-end: 0.313rem;
+}
+
+.step-name {
+    color: var(--white);
+    font-weight: 700;
+    letter-spacing: 0.125rem;
+    vertical-align: baseline;
+}
+
+
+/** STEP 1: Personal Info Form Section */
+
+.form-main-section {
+    width: 70vw;
+    height: 43rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-inline: 2rem;
+}
+
+/** General Styling for form section steps */
+
+.personal-info-form, .select-plan-section, .add-ons-section, .summary-section, .thank-you-section {
+    width: clamp(32rem, 80%, 90%);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.form-header h2 {
+    font-size: 2.25rem;
+    color: var(--dark-blue);
+    margin: 3rem 0 1rem;
+}
+
+.form-header p {
+    font-size: var(--font-size);
+    color: var(--dark-grey);
+}
+
+.form-body {
+    margin-block-start: 4rem;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    margin-block-end: 2rem;
+}
+
+.label-and-error {
+    display: flex;
+    justify-content: space-between;
+}
+
+.label-and-error label {
+    text-transform: capitalize;
+    color: var(--dark-blue);
+    font-size: var(--small-font-size);
+    margin-block-end: 0.5rem;
+}
+
+.error-message {
+    color: var(--bright-red);
+    font-size: var(--small-font-size);
+    font-weight: var(--font-weight-medium);
+}
+
+.name, .email, .phone-no {
+    color: var(--dark-blue);
+    font-family: inherit;
+    width: 100%;
+    height: 3rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--transparent-purple);
+    outline: none;
+    padding-inline: 0.75rem;
+    font-size: var(--font-size);
+    /** Animation Preference */
+    @media (prefers-reduced-motion: no-preference) {
+        transition: border-color 0.2s ease;
+    }
+}
+
+
+/** Input fields error state */
+.name.error, .email.error, .phone-no.error {
+    border-color: var(--bright-red);
+}
+
+.name:focus-visible, .email:focus-visible, .phone-no:focus-visible,
+.name:focus, .email:focus, .phone-no:focus,
+.name:hover, .email:hover, .phone-no:hover
+{  /** Input fields focus state */
+    cursor: pointer;
+    border-color: var(--purple-medium);
+    border-width: 0.0938rem;
+}
+
+.input-container input::placeholder {
+    color: var(--dark-grey);
+    font-size: var(--font-size);
+    font-weight: var(--font-weight-medium);
+}
+
+
+/** STEP 1: Submit Form Button  */
+
+.submit-form {
+    display: flex;
+    justify-content: end;
+    margin-block-start: 2rem;
+}
+
+.next-button {
+    width: 8rem;
+    height: 3rem;
+    border-radius: 0.3125rem;
+    border: none;
+    outline: none;
+    background-color: var(--dark-blue);
+    color: var(--white);
+    font-family: inherit;
+    font-size: var(--font-size);
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+.next-button:hover {
+    background-color: var(--dark-blue-hover);
+}
+
+/** STEP 2: Select Plan Form Section */
+
+.plan-container {
+    display: flex;
+    justify-content: space-between;
+    margin-block-end: 2rem;
+}
+
+.plan-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30.6%;
+    height: 13.75rem;
+    padding-block: 1.5rem; 
+    padding-inline: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--transparent-purple);
+    cursor: pointer;
+    /** Animation Preference */
+    @media (prefers-reduced-motion: no-preference) {
+        transition: border 0.4s ease-in;
+    }
+}
+
+.plan-card-image img {
+    margin-block-end: 3rem;
+}
+
+.plan-card.active {
+    background-color: var(--transparent-light-blue);
+}
+
+.plan-card:hover, .plan-card.active {
+    cursor: pointer;
+    border-color: var(--purple-medium);
+    border-width: 0.0938rem;
+}
+
+.plan-card-header, .yearly-discount-duration {
+    color: var(--dark-blue);
+}
+
+.plan-card-header {
+    margin-block-end: 0.5rem;
+}
+
+.monthly-yearly-pricing {
+    display: flex;
+    align-items: center;
+}
+
+.price, .pricing-cycle {
+    color: var(--dark-grey);
+}
+
+.yearly-discount-duration {
+    font-size: var(--small-font-size);
+    margin-block-start: 0.5rem;
+}
+
+
+/** Billing Section */
+
+.billing-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    background: var(--transparent-blue);
+    padding-block: 0.8rem; 
+    padding-inline: 1.5rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    margin: 1rem auto;
+}
+
+.billing-option-container label {
+    font-weight: var(--font-weight-medium);
+    font-size: var(--small-font-size);
+    color: var(--dark-grey);
+    cursor: pointer;
+    /** Animation Preference */
+    @media (prefers-reduced-motion: no-preference) {
+        transition: color 0.3s ease, font-weight 0.3s ease;
+    }
+}
+
+.billing-option-container input[type="radio"] {
+    display: none;
+}
+
+/** Active label color + weight */
+.billing-option-container input[type="radio"]:checked + label {
+    color: var(--dark-blue);
+    font-weight: var(--font-weight-bold);
+}
+
+/** Toggle Switch Container */
+
+.toggle-container {
+    position: relative;
+    width: 2.8125rem;
+    height: 1.375rem;
+    background: var(--dark-blue);
+    border-radius: 1rem;
+    cursor: pointer;
+    /** Animation Preference */
+    @media (prefers-reduced-motion: no-preference) {
+        transition: background 0.3s ease;
+    }
+}
+
+.toggle-container label {
+    display: none;
+    position: relative;
+    z-index: -6;
+    font-size: 0;
+}
+
+.toggle-container input[type="range"] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+    appearance: none;
+}
+
+/** Toggle Thumb */
+
+.toggle-thumb {
+    position: absolute;
+    top: 0.1875rem;
+    left: 0.25rem;
+    width: 1rem;
+    height: 1rem;
+    background: var(--white);
+    border-radius: 50%;
+    pointer-events: none;
+    /** Animation Preference */
+    @media (prefers-reduced-motion: no-preference) {
+        transition: left 0.3s ease;
+    }
+}
+
+/** When yearly is selected, move thumb right */
+.toggle-container.active .toggle-thumb {
+    left: 1.5625rem;
+}
+
+/** Bounce animation on click/toggle */
+.toggle-thumb.clicked {
+    transform: scale(0.64);
+    /** Animation Preference */
+    @media (prefers-reduced-motion: no-preference) {
+        transition: all 0.4s ease;
+    }
+}
+
+
+/** STEP 2, 3 & 4: Next & Previous Buttons */
+
+.submit-plan, .submit-add-ons, .submit-summary {
+    display: flex;
+    justify-content: space-between;
+    margin-block-start: 2rem;
+}
+
+.previous-button {
+    height: 3rem;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: var(--dark-grey);
+    font-family: inherit;
+    font-size: var(--font-size);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+.previous-button:hover {
+    color: var(--dark-blue);
+}
+
+
+/** STEP 3: Add-ons Section */
+
+.add-ons-container, .summary-card-container {
+    margin-block-start: 3rem;
+}
+
+.addon-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: 1.5rem; 
+    padding-inline: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--transparent-purple);
+    cursor: pointer;
+    margin-block-end: 1rem;
+    /** Animation Preference */
+    @media (prefers-reduced-motion: no-preference) {
+        transition: border-color 0.4s ease;
+    }
+}
+
+.addon-card:hover,
+.addon-card:focus,
+.addon-card:focus-visible,
+.addon-card.active {
+    outline: none;
+    cursor: pointer;
+    border: 1px solid var(--purple-medium);
+}
+
+.addon-card.active {
+    background-color: var(--transparent-light-blue);
+    border-width: 0.0938rem;
+}
+
+.addon-card-body {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/** Native/Default checkbox styling */
+/*
+.addon-card-body input[type="checkbox"] {
+    width: 1.25rem;
+    height: 1.25rem;
+    cursor: pointer;
+}
+
+.addon-card-body input[type="checkbox"]:checked {
+    accent-color: var(--purple-medium);
+}
+*/
+
+/** Custom checkbox styling */
+
+/** Native Checkbox Input */
+.addon-card-body input[type="checkbox"] {
+    width: 1.25rem;
+    height: 1.25rem;
+    position: absolute; /*? Position native checkbox on top the custom checkbox */
+    opacity: 0;
+    cursor: pointer;
+}
+
+/** Custom Checkbox */
+.custom-checkbox {
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 1px solid var(--transparent-purple);
+    border-radius: 0.3125rem;
+    display: inline-block;
+    cursor: pointer;
+    background-color: transparent;
+    flex-shrink: 0;
+    /** Animation Preference */
+    @media (prefers-reduced-motion: no-preference) {
+        transition: all 0.2s ease-in;
+    }
+}
+
+/** Trigger the custom checkbox when the native checkbox is checked */
+.addon-card-body input[type="checkbox"]:checked + .custom-checkbox {
+    background-color: var(--purple-medium);
+    border-color: var(--purple-medium);
+    background-image: url('images/icon-checkmark.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 0.75rem;
+}
+
+.addon-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.addon-details label {
+    font-size: var(--font-size);
+    font-weight: var(--font-weight-medium);
+    color: var(--dark-blue);
+    margin-block-end: 0.25rem;
+}
+
+.addon-details, .addon-details label {
+    cursor: pointer;
+}
+
+.addon-details p {
+    font-size: var(--small-font-size);
+    color: var(--dark-grey);
+}
+
+.addon-price, .addon-pricing-cycle {
+    color: var(--purple-medium);
+}
+
+
+/** STEP 4: Summary Section */
+
+.summary-card {
+    background-color: var(--summary-bg);
+    border-radius: 0.625rem;
+    padding-block: 2rem; 
+    padding-inline: 1.5rem;
+}
+
+.selected-plan-and-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-block-end: 1.5rem;
+}
+
+.divider {
+    width: 100%;
+    border-bottom: 1px solid var(--transparent-purple);
+    margin-block: 1rem 1.5rem;
+    margin-inline: 0;
+}
+
+.user-plan-selected {
+    font-size: var(--font-size);
+    font-weight: var(--font-weight-medium);
+    color: var(--dark-blue);
+    margin-block-end: 0.25rem;
+}
+
+.change-plan-btn {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: var(--dark-grey);
+    text-decoration: 2px underline;
+    font-family: inherit;
+    font-size: var(--small-font-size);
+    cursor: pointer;
+    /** Animation Preference */
+    @media (prefers-reduced-motion: no-preference) {
+        transition: color 0.2s ease-in;
+    }
+}
+
+.change-plan-btn:hover {
+    color: var(--purple-medium);
+}
+
+.selected-plan-price {
+    align-self: center;
+}
+
+.selected-plan-price span {
+    font-size: var(--font-size);
+    font-weight: var(--font-weight-bold);
+    color: var(--dark-blue);
+}
+
+.selected-addon-and-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-block-end: 1.5rem;
+}
+
+.selected-addon-and-price:last-child {
+    margin-block-end: 0;
+}
+
+.selected-addon {
+    font-size: var(--small-font-size);
+    color: var(--dark-grey);
+    text-transform: capitalize;
+}
+
+.selected-addon-price {
+    font-size: var(--small-font-size);
+    color: var(--dark-blue);
+}
+
+.total-cost-container {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-block: 2rem 1.64rem;
+    margin-inline: auto;
+}
+
+.total-cost {
+    font-size: var(--small-font-size);
+    color: var(--dark-grey);
+}
+
+.total-cost-value {
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--purple-medium);
+}
+
+.submit-summary > .next-button {
+    background-color: var(--purple-medium);
+}
+
+.submit-summary > .next-button:hover {
+    background-color: var(--purple-medium-hover);
+}
+
+
+
+/** STEP 5: Thank You Section */
+
+.thank-you-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.thank-you-section img, .thank-you-section h2 {
+    margin-block-end: 2rem;
+}
+
+.thank-you-text {
+    font-size: 2.25rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--dark-blue);
+}
+
+.thank-you-paragraph {
+    font-size: var(--font-size);
+    color: var(--dark-grey);
+    line-height: 1.5rem;
+}
+
+.thank-you-paragraph a {
+    color: var(--dark-grey);
+    text-decoration: none;
+}
+
+
+/** Utilities */
+
+.hidden {
+    display: none;
+    pointer-events: none;
+}
+
+.disabled-section {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: not-allowed; 
+}
+
+
+/**  Error Displays & Animations */
+
+.error-vibrate {
+    animation: shake .12s 5;
+}
+
+@keyframes shake {
+    0% { 
+        transform: translateX(0);
+    }
+    40% {
+        transform: translateX(10px);
+    }
+    100% {
+        transform: translateX(-10px);
+    }
+}
+
+
+/** Confirmation Modal */
+
+.confirmation-modal-container {
+    height: 100%;
+    width: 100%;
+    background-color: var(--modal-container-color);
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+}
+
+.confirmation-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: min(92vw, 50rem);
+    background-color: var(--transparent-light-blue);
+    border: 1px solid var(--transparent-purple);
+    box-shadow: 0 8px 32px var(--dark-blue-transparent);
+    border-radius: 0.75rem;
+    padding-block: 2rem;
+    padding-inline: 2rem;
+    position: relative;
+}
+
+
+/** Close Modal Icon */
+
+.close-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -0.75rem;
+    right: -0.75rem;
+    background-color: var(--white);
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    z-index: 4;
+    border: 2px solid var(--transparent-purple);
+    box-shadow: 0 4px 12px var(--dark-blue-transparent-light);
+    cursor: pointer;
+    /** Animation Preference */
+    @media (prefers-reduced-motion: no-preference) {
+        transition: all 0.2s ease;
+    }
+}
+
+.close-modal:hover {
+    background-color: var(--transparent-light-blue);
+    border-color: var(--light-blue);
+    box-shadow: 0 6px 16px var(--dark-blue-transparent);
+    transform: scale(1.05);
+}
+
+.close-modal-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: var(--dark-grey);
+    /** Animation Preference */
+    @media (prefers-reduced-motion: no-preference) {
+        transition: color 0.2s ease;    
+    }
+}
+
+.close-modal-icon:hover {
+    fill: var(--bright-red);
+}
+
+
+/** Parent Container for all Confirmation Modal Details */
+.confirmation-modal-details {
+    width: 100%;
+}
+
+
+/** Modal Header & Paragraph */
+
+.modal-header {
+    margin: 2rem 0;
+    justify-items: center;
+}
+
+.modal-header h3 {
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--dark-blue);
+    text-transform: capitalize;
+}
+
+.modal-header h3 > span {
+    color: var(--light-blue);
+}
+
+.modal-header p {
+    font-size: var(--small-font-size);
+    color: var(--dark-grey);
+    line-height: 1.25rem;
+}
+
+
+/** Modal Body */
+
+.modal-body {
+    background-color: var(--transparent-blue);
+    height: 100%;
+    width: 100%;
+    border-radius: 0.625rem;
+    padding-block: 1.5rem;
+    padding-inline: 1.5rem;
+    display: flex;
+}
+
+.modal-body * h3, h4 {
+    color: var(--dark-blue);
+    font-weight: var(--font-weight-bold);
+    font-size: 1.25rem;
+}
+
+
+/** Confirm Personal Information */
+
+.confirm-personal-info-container {
+    border-right: 1px solid var(--transparent-purple);
+    padding-inline-end: 1.25rem;
+    margin-inline-end: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+.confirm-personal-info-container h3 {
+    margin-block-end: 1rem;
+}
+
+/** Shared styles for confirm personal information containers (name, email, phone) */
+.confirm-personal-info-name, .confirm-personal-info-email, .confirm-personal-info-phone {
+    margin-block-end: 0.8rem;
+}
+
+/** Shared styles for confirm personal information headers (name, email, phone) */
+.confirm-personal-info-body * h5 {
+    color: var(--dark-blue);
+    font-weight: var(--font-weight-regular);
+    font-size: 1.125rem;
+    margin-block-end: 0.2rem;
+}
+
+/** Shared styles for users personal information data */
+.personal-info-name, .personal-info-email, .personal-info-phone {
+    color: var(--dark-grey);
+    font-weight: var(--font-weight-thin);
+}
+
+/** Confirm Plan & Add-ons Container */
+.confirm-plan-and-addons-container {
+    width: 100%;
+}
+
+/** Confirm Plan & Add-ons Headers & Body */
+.confirm-plan-header, 
+.confirm-plan-body, 
+.confirm-add-ons-header, 
+.confirm-add-ons,
+.confirm-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/** Selected Plan Price to be confirmed */
+.plan-price {
+    font-size: var(--font-size);
+}
+
+/** Horizontal Divider */
+.confirm-divider hr {
+    margin-block-start: 1rem;
+    margin-block-end: 1rem;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    color: var(--transparent-purple);
+    border-style: solid;
+    border-bottom-width: 1px;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-left-width: 0;
+    width: 100%;
+}
+
+/** Shared styles for Plan & Add-ons Headers & Body Spacing */
+.confirm-plan-header, .confirm-add-ons-header, .confirm-add-ons {
+    margin-block-end: 1rem;
+}
+
+/** Shared styles for Plan & Add-ons Names */
+.plan-name, .add-on-name {
+    font-weight: var(--font-weight-thin);
+    color: var(--dark-grey);
+}
+
+/** Confirm Add-on Name */
+.add-on-name {
+    text-transform: capitalize;
+}
+
+/** Shared styles for Plan & Add-ons Prices */
+.plan-price, .add-on-price {
+    color: var(--light-blue);
+    font-weight: var(--font-weight-medium);
+}
+
+/** Confirm Add-on Price */
+.add-on-price {
+    font-size: var(--small-font-size);
+}
+
+/** Confirm Total Cost */
+.total-amount {
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--purple-medium);
+}
+
+
+/** Confirmation Modal Button */
+
+.confirm-button-container {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    margin: 1.5rem 0 0;
+}
+
+.confirm-button {
+    align-self: end;
+    border: none;
+    outline: none;
+    background-color: var(--bright-red);
+    color: var(--white);
+    font-family: inherit;
+    font-size: var(--font-size);
+    padding-block: 0.75rem; 
+    padding-inline: 1.5rem;
+    border-radius: 0.3125rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    /** Animation Preference */
+    @media (prefers-reduced-motion: no-preference) {
+        transition: all 0.2s ease-in;
+    }
+}
+
+.confirm-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 32%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--shine), transparent);
+    transform: skewX(-25deg);
+    animation: shine 3.2s ease-in-out infinite;
+}
+
+.confirm-button:hover {
+    background-color: var(--bright-red-hover);
+}
+
+/** Shine Animation */
+@keyframes shine {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+
+/** Spinner Loading Animation */
+
+.spinner-container {
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    background-color: var(--spinner-container-color);
+}
+
+.spinner {
+    width: 3.125rem;
+    height: 3.125rem;
+    margin: 0 auto;
+    border: 6px solid;
+    border-radius: 50%;
+    border-color: var(--purple-medium) transparent var(--white) transparent;
+    animation: spin 1.2s cubic-bezier(0.6, -0.28, 0.74, 0.05) infinite;
+}
+
+@keyframes spin {
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+
+/** Media Queries */
+
+/** Tablet to Desktop */
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .container {
+        width: clamp(45rem, 96vw, 64rem);
+    }
+    .progress-section {
+        padding-inline-start: 1rem;
+    }
+    .form-main-section {
+        padding-inline: clamp(1rem, 1.5rem, 2rem);
+    }
+}
+
+
+/** Mobile to Tablet */
+
+@media screen and (min-width: 320px) and (max-width: 767.9px) {
+    body {
+        justify-content: flex-start;
+    }
+    .container {
+        flex-direction: column;
+        justify-content: flex-start;
+        width: 100vw;
+        min-height: 100dvh;
+        background-color: transparent;
+        border-radius: 0;
+        padding: 0;
+        margin: 0;
+        max-width: unset;
+        box-shadow: unset;
+        flex-grow: 1;
+    }
+    .progress-section {
+        background: url('images/bg-sidebar-mobile.svg') no-repeat center center / cover;
+        height: 12rem;
+        width: 100%;
+        flex-direction: row;
+        justify-content: center;
+        padding-inline-start: 0;
+        border-radius: 0;
+    }
+    .progress-section-mobile {
+        width: clamp(14rem, 64vw, 24rem);
+        display: flex;
+        justify-content: space-between;
+    }
+    .progress-circle {
+        width: 2.5rem;
+    }
+    .user-info-step {
+        display: none;
+    }
+    .step-number {
+        margin-inline-end: 0;
+    }
+    .form-main-section {
+        background-color: var(--transparent-blue);
+        flex-direction: column;
+        width: 100vw;
+        height: 50rem;
+        min-height: 100%;
+        padding-inline: 0;
+    }
+    .personal-info-form, .select-plan-section, .add-ons-section, .summary-section, .thank-you-section {
+        width: unset;
+        align-items: center;
+    }
+    .personal-info-form-mobile, .select-plan-section-mobile, .add-ons-section-mobile, .summary-section-mobile, .thank-you-section {
+        width: clamp(18rem, 90vw, 36rem);
+        border-radius: 0.5rem;
+        background-color: var(--white);
+        margin-block-start: -4.8rem;
+        padding-block: 1.25rem;
+        padding-inline: 1.25rem;
+        box-shadow: 0rem 0.5rem 0.5rem 0rem var(--transparent-purple);
+    }
+    .thank-you-section {
+        margin-block-start: -9.6rem;
+    }
+    .submit-form, .submit-plan, .submit-add-ons, .submit-summary {
+        width: 100vw;
+        background-color: var(--white);
+        padding-block: 1rem;
+        padding-inline: 1.25rem;
+        position: fixed;
+        bottom: 0;
+    }
+    .error-message {
+        font-size: .75rem;
+        font-weight: var(--font-weight-regular);
+        text-align: end;
+    }
+    .confirmation-modal-container {
+        height: calc(100% + 0.688rem);
+    }
+}
+
+
+/** Mobile Only */
+
+@media screen and (min-width: 320px) and (max-width: 480px) {
+    .plan-container {
+        flex-direction: column;
+        row-gap: 1rem;
+    }
+    .plan-card {
+        flex-direction: row;
+        width: 100%;
+        height: 6rem;
+        justify-content: flex-start;
+        column-gap: 1.5rem;
+        /** Animation Preference */
+        @media (prefers-reduced-motion: no-preference) {
+            transition: border 0.4s ease-in, height 0.4s ease-in;
+        }
+    }
+    .plan-card:has(.yearly-discount-duration:not(.hidden)) {
+        height: 8rem;
+        /** Animation Preference  */
+        @media (prefers-reduced-motion: no-preference) {
+            transition: border 0.4s ease-in-out, height 0.8s ease-out;
+        }
+    }
+    .confirmation-modal-container {
+        position: fixed;
+    }
+    /** Target both html and body to disable scrolling */
+    html:has(.confirmation-modal-container:not(.hidden)),
+    body:has(.confirmation-modal-container:not(.hidden)) {
+        overflow: hidden;
+    }
+    .confirmation-modal {
+        height: clamp(80vh, 49.168rem, 90vh);
+    }
+    .confirmation-modal-details {
+        overflow-y: scroll;
+    }
+    .modal-body {
+        flex-direction: column;
+        height: unset;
+        padding-inline: 0.8rem;
+    }
+    .confirm-personal-info-container {
+        width: 100%;
+        border-right: none;
+        margin-inline-end: 0;
+        padding-inline-end: 0;
+        border-bottom: 1px solid var(--transparent-purple);
+        margin-block-end: 1rem;
+        padding-block-end: 0.2rem;
+    }
+    .confirm-personal-info-body {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+        column-gap: 0.5rem;
+    }
+    .personal-info-email {
+        word-break: break-word;
+        max-width: 100%;
+        -webkit-hyphens: auto;
+        -moz-hyphens: auto;
+        -ms-hyphens: auto;
+        hyphens: auto;
+        -webkit-hyphenate-character: "—";
+        hyphenate-character: "—";
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 393px) {
+    .addon-card {
+        padding-inline: .6rem;
+    }
+    .addon-card-body {
+        gap: 0.8rem;
+    }
+}
+
+@media screen and (width: 320px) {
+    .modal-body {
+        max-height: 64vh;
+        overflow-y: scroll;
+    }
+}
+
+@media screen and (max-width: 319px) {
+    :root {
+        --transparent-black: #0000;
+        --off-white: #f1f1f1;
+    }
+    body {
+        --s: 1.125rem; /* control the size */
+        --c1: var(--lighter-blue);
+        --c2: var(--light-blue);
+        --c3: azure;
+
+        --g1: conic-gradient(at calc(250%/3) calc(50%/3),var(--c2) 60deg,var(--transparent-black) 0 300deg,var(--c1) 0);
+        --g2: conic-gradient(at calc(50%/3) 50%,var(--transparent-black) 75%,var(--c1) 0);
+        --g3: conic-gradient(at calc(100%/3) 50%,var(--transparent-black) 75%,var(--c2) 0);
+        --g4: conic-gradient(from 59deg at calc(200%/3) calc(249%/9),var(--c3) 61deg,var(--transparent-black) 62deg);
+        --g5: conic-gradient(from 60deg at 50% calc(250%/3),var(--off-white) /*4th color*/ 60deg,var(--c1) 0 120deg,var(--transparent-black) 0);
+        --_p: calc(9*tan(30deg)*var(--s));
+        background:
+        var(--g1) calc(-1*var(--s)) 0,var(--g1) calc(2*var(--s)) var(--_p),
+        var(--g2),var(--g2) calc(3*var(--s)) var(--_p),
+        var(--g3),var(--g3) calc(3*var(--s)) var(--_p),
+        var(--g4),var(--g4) calc(3*var(--s)) var(--_p),
+        var(--g5) calc(3*var(--s)) 0,var(--g5) 0 var(--_p) var(--c3);
+        background-size: calc(6*var(--s)) calc(2*var(--_p));
+        /** Animation Preference  */
+        @media (prefers-reduced-motion: no-preference) {
+            transition: background 0.8s ease-in;
+        }
+    }
+    .container {
+        width: 100vw;
+        height: 100vh;
+        border-radius: unset;
+        margin: unset;
+        padding-block: unset;
+        padding-inline: unset;
+        box-shadow: unset;
+        max-width: unset;
+        min-height: unset;
+        background-color: unset;
+        /*? Alternative Background method -- delete the above and uncomment the below to use */
+        /* background-color: var(--dark-grey);
+        background-image: repeating-linear-gradient(
+            -45deg,
+            transparent,
+            transparent 0.6rem,
+            rgba(255, 255, 255, 0.1) 0.5rem,
+            rgba(255, 255, 255, 0.1) 2rem
+        );
+        opacity: 0.8; */
+        /** Animation Preference */
+        @media (prefers-reduced-motion: no-preference) {
+            transition: all 0.4s ease-in;
+        }
+    }
+    .screen-error-message {
+        text-align: center;
+        width: 96%;
+        font-size: 3.6rem;
+        font-weight: 700;
+        color: var(--dark-blue);
+        text-transform: uppercase;
+        word-wrap: break-word;
+        -webkit-hyphens: auto; 
+        -moz-hyphens: auto; 
+        -ms-hyphens: auto; 
+        hyphens: auto;
+        -webkit-hyphenate-character: "— ";
+        hyphenate-character: "— ";
+    }
+}
